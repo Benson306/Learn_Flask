@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 app = Flask(__name__)
 
 @app.route('/')
@@ -17,6 +17,20 @@ def show_blog(postID):
 def revision(revNo):
    return "Revision Number %f" % revNo
 
+@app.route('/admin')
+def hello_admin():
+   return "Hello Admin"
+
+@app.route('/guest/<guest>')
+def hello_guest(guest):
+   return "Hello %s as Guest" % guest
+
+@app.route('/user/<name>')
+def hello_user(name):
+   if name == "admin":
+      return redirect_url(url_for("hello_admin"))
+   else:
+      return redirect_url(url_for("hello_guest",guest = name))
 def hi_ben():
    return "Sasa Ben"
 
