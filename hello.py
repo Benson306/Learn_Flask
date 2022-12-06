@@ -61,6 +61,13 @@ def marks(score):
 def result():
    dict = {'phy':50,'che':60, 'maths':70}
    return render_template('result.html', result = dict)
+
+@app.route('/input',methods = ['POST', 'GET'])
+def new_result():
+   if request.method == 'POST':
+      result = request.form
+      return render_template("show_results.html",result = result)
+
 def hi_ben():
    return "Sasa Ben"
 
