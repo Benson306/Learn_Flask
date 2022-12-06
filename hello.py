@@ -5,6 +5,10 @@ app = Flask(__name__)
 def hello_world():
    return "Hello World"
 
+@app.route('/home')
+def index():
+   return render_template("index.html")
+
 @app.route('/ben/<number>')
 def benji(number):
    return "Hello %s!" % number
