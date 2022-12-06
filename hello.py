@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, render_template
 app = Flask(__name__)
 
 @app.route('/')
@@ -44,6 +44,11 @@ def login():
      else:
         user = request.args.get('nm')
         return redirect(url_for('success', name = user))
+
+@app.route('/hello/<user>')
+def hello_name(user):
+   return render_template("hello.html", name = user)
+
 def hi_ben():
    return "Sasa Ben"
 
